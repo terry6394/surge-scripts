@@ -20,4 +20,5 @@ if(typeof(operationType) != "undefined" && operationType.search('mainpageAuthFla
 else {
   console.log("========== 无需延迟脚本结束 ==========")
   $done();
+  
 }
