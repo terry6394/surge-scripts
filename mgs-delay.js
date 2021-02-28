@@ -1,10 +1,23 @@
+function sleep(delay) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + delay);
+}
+
+
+
 console.log("========== 延迟脚本开始 ==========")
-let headers = $response.headers;
+let headers = $request.headers
 let operationType = headers['Operation-Type'];
 console.log("operationType: " + operationType);
-if(operationType.search('mainpageAuthFlag') > -1) {
+
+if(typeof(operationType) != "undefined" && operationType.search('mainpageAuthFlag') > -1) {
   console.log(operationType.search('mainpageAuthFlag'));
-  setTimeout(function(){alert("Hello world");},1000);
+  console.log("========== 延迟3000ms ==========")
+  sleep(3000)
+  console.log("========== 延迟脚本结束 ==========")
+  $done();
 }
-$done({headers});
-console.log("========== 延迟脚本结束 ==========")
+else {
+  console.log("========== 无需延迟脚本结束 ==========")
+  $done();
+}
